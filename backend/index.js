@@ -614,6 +614,12 @@ app.post("/update-password", verifyAccessToken, async (req, res) => {
   }
 });
 
+// Health Check Endpoint
+app.get("/ping", (req, res) => {
+  res.status(200).send("Pong");
+});
+
+// Global Error Handler Middleware
 app.use((err, req, res, next) => {
   console.error("Global Error:", err.message);
   if (err.message === "Not allowed by CORS") {
