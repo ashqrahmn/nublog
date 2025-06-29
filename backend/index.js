@@ -94,7 +94,7 @@ app.post("/email", async (req, res) => {
 });
 
 // Get all subscribed emails
-app.get("/email", verifyAccessToken, async (req, res) => {
+app.get("/email", async (req, res) => {
   try {
     const emails = await EmailModel.find({});
     return res.json({ success: true, emails });
