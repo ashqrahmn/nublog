@@ -107,10 +107,10 @@ const AppContent = () => {
           }
         />
         <Route path="/admin" element={<Dashboard />}>
-          <Route path="AddBlog" element={<AddBlog />} />
-          <Route path="AllBlogs" element={<AllBlogs />} />
-          <Route path="AddCategory" element={<AddCategory />} />
-          <Route path="Subscription" element={<Subscription />} />
+          <Route path="addblog" element={<AddBlog />} />
+          <Route path="bloglist" element={<AllBlogs />} />
+          <Route path="category" element={<AddCategory />} />
+          <Route path="subscriptions" element={<Subscription />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>

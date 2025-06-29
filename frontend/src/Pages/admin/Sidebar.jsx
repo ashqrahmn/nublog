@@ -34,14 +34,15 @@ const Sidebar = ({ className = "", closeSidebar }) => {
     <div
       className={`flex flex-col bg-light-green w-80 h-full text-bangladesh-green ${className}`}
     >
-      <div className="hidden md:flex items-center justify-center h-[80px] border border-bangladesh-green">
-        <img src={Nublog} alt="NuBlog" className="w-24 h-auto" />
-      </div>
+      <div className="flex items-center justify-center h-[80px] border border-bangladesh-green">
+  <img src={Nublog} alt="NuBlog" className="w-24 h-auto" />
+</div>
+
 
       <div className="flex-grow relative py-12 border border-bangladesh-green">
         <div className="w-[80%] absolute right-0 space-y-5">
           <Link
-            to="/admin/AddBlog"
+            to="/admin/addblog"
             onClick={handleClick}
             className="flex items-center border border-bangladesh-green gap-3 font-medium px-3 py-2 bg-white text-sm shadow-greenn whitespace-nowrap rounded"
           >
@@ -50,7 +51,7 @@ const Sidebar = ({ className = "", closeSidebar }) => {
           </Link>
 
           <Link
-            to="/admin/AllBlogs"
+            to="/admin/bloglist"
             onClick={handleClick}
             className="flex items-center border border-bangladesh-green gap-3 font-medium px-3 py-2 bg-white text-sm shadow-greenn whitespace-nowrap rounded"
           >
@@ -59,7 +60,7 @@ const Sidebar = ({ className = "", closeSidebar }) => {
           </Link>
 
           <Link
-            to="/admin/Subscription"
+            to="/admin/subscriptions"
             onClick={handleClick}
             className="flex items-center border border-bangladesh-green gap-3 font-medium px-3 py-2 bg-white text-sm shadow-greenn whitespace-nowrap rounded"
           >
@@ -68,7 +69,7 @@ const Sidebar = ({ className = "", closeSidebar }) => {
           </Link>
 
           <Link
-            to="/admin/AddCategory"
+            to="/admin/category"
             onClick={handleClick}
             className="flex items-center border border-bangladesh-green gap-3 font-medium px-3 py-2 bg-white text-sm shadow-greenn whitespace-nowrap rounded"
           >
