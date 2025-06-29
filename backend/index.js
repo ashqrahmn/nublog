@@ -159,7 +159,7 @@ app.get("/get-categories", async (req, res) => {
 });
 
 // Add category
-app.post("/category", verifyAccessToken, async (req, res) => {
+app.post("/category", async (req, res) => {
   try {
     const name = (req.body.name || "").trim();
     if (!name) {
@@ -205,7 +205,7 @@ app.delete("/category", async (req, res) => {
 });
 
 // Add blog
-app.post("/blog", verifyAccessToken, upload.single("image"), async (req, res) => {
+app.post("/blog", upload.single("image"), async (req, res) => {
   try {
     const { title, description, category } = req.body;
     const image = req.file;
@@ -342,7 +342,7 @@ app.get("/get-blogs", async (req, res) => {
 });
 
 // Delete blog
-app.delete("/blog", verifyAccessToken, async (req, res) => {
+app.delete("/blog", async (req, res) => {
   try {
     const id = req.query.id;
     if (!id) {
