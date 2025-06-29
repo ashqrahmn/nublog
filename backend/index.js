@@ -107,7 +107,7 @@ app.get("/email", async (req, res) => {
 });
 
 // Delete email
-app.delete("/email", verifyAccessToken, async (req, res) => {
+app.delete("/email", async (req, res) => {
   try {
     const id = req.query.id;
     if (!id) {
