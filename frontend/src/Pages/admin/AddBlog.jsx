@@ -20,7 +20,7 @@ const AddBlog = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axiosInstance.get("/get-categories");
+        const res = await axiosInstance.get("/category");
         if (res.data.success) {
           setCategories(res.data.categories);
         }
@@ -132,8 +132,10 @@ const AddBlog = () => {
     formData.append("image", image);
 
     try {
+      const token = localStorage.getItem("adminToken");
       const response = await axiosInstance.post("/blog", formData, {
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });

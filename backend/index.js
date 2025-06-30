@@ -94,7 +94,7 @@ app.post("/email", async (req, res) => {
 });
 
 // Get all subscribed emails
-app.get("/email", async (req, res) => {
+app.get("/email", verifyAccessToken, async (req, res) => {
   try {
     const emails = await EmailModel.find({});
     return res.json({ success: true, emails });
@@ -107,7 +107,7 @@ app.get("/email", async (req, res) => {
 });
 
 // Delete email
-app.delete("/email", async (req, res) => {
+app.delete("/email", verifyAccessToken, async (req, res) => {
   try {
     const id = req.query.id;
     if (!id) {
@@ -146,7 +146,7 @@ app.get("/unsubscribe", async (req, res) => {
 });
 
 // Get categories
-app.get("/get-categories", async (req, res) => {
+app.get("/category", async (req, res) => {
   try {
     const categories = await CategoryModel.find({}, "name");
     return res.json({ success: true, categories });
@@ -159,7 +159,7 @@ app.get("/get-categories", async (req, res) => {
 });
 
 // Add category
-app.post("/category", async (req, res) => {
+app.post("/category", verifyAccessToken, async (req, res) => {
   try {
     const name = (req.body.name || "").trim();
     if (!name) {
@@ -182,7 +182,7 @@ app.post("/category", async (req, res) => {
 });
 
 // Delete category
-app.delete("/category", async (req, res) => {
+app.delete("/category", verifyAccessToken, async (req, res) => {
   try {
     const id = req.query.id;
     if (!id) {
@@ -205,7 +205,7 @@ app.delete("/category", async (req, res) => {
 });
 
 // Add blog
-app.post("/blog", upload.single("image"), async (req, res) => {
+app.post("/blog", verifyAccessToken, upload.single("image"), async (req, res) => {
   try {
     const { title, description, category } = req.body;
     const image = req.file;
@@ -306,7 +306,7 @@ app.post("/blog", upload.single("image"), async (req, res) => {
 });
 
 // Get blogs
-app.get("/get-blogs", async (req, res) => {
+app.get("/blog", async (req, res) => {
   const id = req.query.id;
   try {
     const admin = await AdminModel.findOne().lean();
@@ -342,7 +342,7 @@ app.get("/get-blogs", async (req, res) => {
 });
 
 // Delete blog
-app.delete("/blog", async (req, res) => {
+app.delete("/blog", verifyAccessToken, async (req, res) => {
   try {
     const id = req.query.id;
     if (!id) {
@@ -460,7 +460,7 @@ app.post("/admin/refresh", verifyRefreshToken, async (req, res) => {
 });
 
 // Get Admin Info
-app.get("/admin", async (req, res) => {
+app.get("/admin", verifyAccessToken, async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {

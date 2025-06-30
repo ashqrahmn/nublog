@@ -10,7 +10,7 @@ const BlogList = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axiosInstance.get("/get-blogs");
+      const response = await axiosInstance.get("/blog");
       setBlogs(response.data.blogs);
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -21,7 +21,7 @@ const BlogList = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axiosInstance.get("/get-categories");
+      const response = await axiosInstance.get("/category");
       if (response.data.success) {
         setCategories(response.data.categories);
       }

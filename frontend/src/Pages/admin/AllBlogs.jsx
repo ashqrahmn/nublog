@@ -8,7 +8,7 @@ const AllBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axiosInstance.get("/get-blogs");
+      const response = await axiosInstance.get("/blog");
       setBlogs(response.data.blogs);
     } catch (error) {
       toast.error("Failed to fetch blogs");
@@ -17,8 +17,12 @@ const AllBlogs = () => {
 
   const deleteBlog = async (mongoId) => {
     try {
+      const token = localStorage.getItem("adminToken");
       const response = await axiosInstance.delete("/blog", {
         params: { id: mongoId },
+        headers: {
+        Authorization: `Bearer ${token}`,
+      },
       });
       if (response.data.success) {
         toast.success(response.data.msg);

@@ -8,7 +8,12 @@ const Subscription = () => {
 
   const fetchEmails = async () => {
     try {
-      const response = await axiosInstance.get('/email');
+      const token = localStorage.getItem("adminToken");
+      const response = await axiosInstance.get('/email', {
+          headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setEmails(response.data.emails);
     } catch (error) {
       toast.error('Failed to fetch emails');
@@ -17,8 +22,12 @@ const Subscription = () => {
 
   const deleteEmail = async (mongoId) => {
     try {
+      const token = localStorage.getItem("adminToken");
       const response = await axiosInstance.delete('/email', {
         params: { id: mongoId },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response.data.success) {
         toast.success(response.data.msg);

@@ -24,7 +24,11 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await axiosInstance.get("/admin");
+        const response = await axiosInstance.get("/admin", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.data?.success) {
           setAdminData(response.data.admin);
           setIsAuthenticated(true);

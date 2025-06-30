@@ -9,7 +9,7 @@ const AddCategory = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axiosInstance.get("/get-categories");
+      const res = await axiosInstance.get("/category");
       if (res.data.success) {
         setCategories(res.data.categories);
       }
@@ -26,9 +26,16 @@ const AddCategory = () => {
     if (!newCategory.trim()) return;
 
     try {
+      const token = localStorage.getItem("adminToken");
       const res = await axiosInstance.post("/category", {
         name: newCategory.trim(),
-      });
+      },
+      {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+    );
       if (res.data.success) {
         toast.success("Category added successfully");
         setNewCategory("");
@@ -43,7 +50,13 @@ const AddCategory = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axiosInstance.delete(`/category?id=${id}`);
+      const token = localStorage.getItem("adminToken");
+      const res = await axiosInstance.delete(`/category?id=${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+      });
       if (res.data.success) {
         toast.success("Category deleted successfully");
         fetchCategories();
