@@ -75,17 +75,17 @@ app.post("/email", async (req, res) => {
     if (exists) {
       return res
         .status(409)
-        .json({ success: false, msg: "Email already subscribed" });
+        .json({ success: false, msg: "Already Subscribed" });
     }
 
     await EmailModel.create({ email });
-    return res.json({ success: true, msg: "Email subscribed successfully" });
+    return res.json({ success: true, msg: "Thank you for Subscribing!" });
   } catch (error) {
     console.error("POST /email Error:", error);
     if (error.code === 11000) {
       return res
         .status(409)
-        .json({ success: false, msg: "Email already subscribed" });
+        .json({ success: false, msg: "Already Subscribed" });
     }
     return res
       .status(500)
